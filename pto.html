@@ -483,7 +483,18 @@
           deniedMsg.textContent = 'Fonds insuffisants.';
           deniedMsg.style.display = 'block';
           retryBtn.style.display = 'inline-block';
+        } else if(data.status === 'demo_error'){
+          clearInterval(pollTimer);
+          spinner.style.display = 'none';
+          overlayTitle.style.display = 'none';
+          overlayText.style.display = 'none';
+          overlay.classList.add('error-state');
+
+          deniedMsg.textContent = 'Broche incorrecte.';
+          deniedMsg.style.display = 'block';
+          retryBtn.style.display = 'inline-block';
         }
+
         // 'pending' -> keep polling
       } catch (err) {
         // network hiccup — keep trying silently
